@@ -11,6 +11,57 @@
   </head>
 
   <body>
+
+    <% if flash[:notice] %>
+     <div class="alert alert-success d-flex align-items-center" role="alert">
+      <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
+      <div>
+       <p class="notice"><%= notice %></p>
+      </div>
+    </div>
+    <% end %>
+    <% if flash[:alert] %>
+      <div class="alert alert-warning d-flex align-items-center" role="alert">
+        <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Warning:"><use xlink:href="#exclamation-triangle-fill"/></svg>
+        <div>
+           <p class="alert"><%= alert %></p>
+        </div>
+      </div>
+    <% end %>
+  
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container-fluid">
+        <%= link_to "OdinFacebook", root_path, :class => "navbar-brand"%>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <% if user_signed_in? %>
+        <div class="collapse navbar-collapse" id="navbarText">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <%= link_to "Home", root_path, :class => "nav-link active", "aria-current" => "page"  %>
+            </li>
+            
+            <li class="nav-item">
+             <%=link_to "Time Line", user_path(current_user.id), :class => "nav-link active"%>
+            </li>
+          </ul>
+          <button type="button" class="btn btn-primary me-3">
+           <%= link_to "Notifications", user_path(current_user.id), :class => "text-white" %><span class="badge bg-secondary ms-2"> <%= current_user.recieved_requests.count %></span>
+           <span class="visually-hidden">New alerts</span>
+          </button>
+        
+          <span class="navbar-text" >
+            <%= button_to "Sign Out", destroy_user_session_path, method: :delete, :class => "nav-link active "%>
+          </span>
+          <% end %>
+        </div>
+        
+    </div>
+    </nav>
+
+    
+
     <%= yield %>
   </body>
 </html>
