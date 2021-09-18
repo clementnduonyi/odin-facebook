@@ -1,0 +1,15 @@
+<% if @user == current_user %>
+<%= render "profile", {user: @user} %><br />
+    <% if all_friend_requests.empty? %>
+        <p> There are no friend request</p>
+    <% else %>
+        <%= render "request", request: @request%>
+    <% end %>
+<% end %>
+ 
+<% @fans.each do |fan| %>
+    <p>
+        <%= link_to fan.firstname + " " + fan.surename, user_path(fan) %>
+    </p>
+<% end %>
+<br />

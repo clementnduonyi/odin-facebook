@@ -1,0 +1,18 @@
+<% if user_signed_in? %>
+    <% @users.each do |user|%>
+        <% unless user == current_user || current_user.fans.any?{ |fan| fan.id == user.id} %>
+            <div class="mb-3">
+                <span><%= user.firstname + " " + user.surename %></span>
+                <span><%= button_to "Add friend", requests_path(reciever_id: user.id ), 
+                method: :post, :class => "btn btn-primary ms-3" %><span><br />
+            <!-- <span><%#= button_to "Remove", user_url(id: user.id), method: :delete, :class => "btn btn-primary ms-3" %><span>-->
+            </div>
+        <% end %>   
+    <% end %>
+<% end %>
+
+
+
+    
+
+

@@ -1,0 +1,33 @@
+
+<div class="form-control form-control-lg mt-5" style ="width: 30%; margin: auto">
+  <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+    <div class="mb-3">
+      <%= f.input :email,
+                  required: false,
+                  autofocus: true,
+                  input_html: { :class => "input" }, :placeholder => "Enter email here" %>
+    </div>
+    <div class="mb-3">
+      <%= f.input :password,
+                  required: false,
+                  input_html: { :class => "current-password" }, :placeholder => "Enter password here" %>
+    </div>
+    <div class="mb-3">
+      <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
+    </div>
+    <div class="mb-3">
+      <%= f.button :submit, "Log In", :class => "btn btn-primary form-control-lg" , :style => "width: 100%"%>
+    </div>
+  <% end %>
+  <div class="mb-3 text-center">
+    <%= link_to "Forget Password?", new_password_path(:user) %>
+  </div>
+  <hr>
+  <div class="mb-3 text-center">
+    <%= link_to "Create New Account", new_user_registration_path, :class => "btn btn-success form-control-lg", :style => "color: white;"%>
+  </div>
+  
+</div>
+
+
+

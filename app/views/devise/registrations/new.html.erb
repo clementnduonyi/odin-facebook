@@ -1,0 +1,61 @@
+<div class="form-control form-control-lg mt-5 mb-5" style="width: 30%; margin: auto">
+  <div>
+    <h2>Sign up</h2>
+    <small>It's quick and easy</small>
+  </div>
+  <hr>
+  <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+    <%= f.error_notification %>
+    <div class="col-md-12 mb-3">
+       <%= f.input :firstname, required: true, autofocus: true, input_html: 
+       { :class => "input" }, label_html: {:class => "label"},
+       :placeholder => "Enter first name here" %>
+    </div>
+    <div class="col-md-12 mb-3">
+      <%= f.input :surename, required: true, input_html: { :class => "input" }, 
+      label_html: {:class => "label"}, :placeholder => "Enter surename here" %>
+    </div>
+    <div class="col-md-12 mb-3">
+       <%= f.input :email, required: true, input_html: { :class => "input" }, 
+       label_html: {:class => "label"}, :placeholder => "Enter email here"%>
+    </div>
+    <div class="col-md-12 mb-3">
+      <%= f.input :password, required: true, hint: ("#{@minimum_password_length} 
+      characters minimum" if @minimum_password_length), input_html: { :class => "input" }, 
+      label_html: {:class => "label"}, :placeholder => "Create new password" %>
+    </div>
+    <div class="col-12 mb-3">
+       <%= f.input :password_confirmation, required: true, input_html:{ :class => "input" }, 
+       label_html: {:class => "label"}, :placeholder => "Confirm new password" %>
+    </div>
+    <div class="col-12 form-control mb-3">
+       <%= f.label :'Date of birth' %><br />
+        <%= f.date_select :birth_date, input_html: {class: "input"}, 
+        wrapper: false, label_html: {class: 'label'} %>
+    </div>
+    <h6>Gender</h6>
+    <div class="col-6 btn-group" data-toggle="buttons-radio">
+      <div class="col-md-2 form-control pe-2 mb-3">
+        <%= f.label :male, :class => "me-5"%>
+        <%= f.radio_button :gender, :value => "male", :id=>"male",
+         input_html: {class: "input"}, wrapper: false, label_html: {class: 'label'}  %>
+      </div>
+      <div class="col-md-2 form-control ms-1 mb-3">
+        <%= f.label :female, :class => "me-5" %>
+        <%= f.radio_button :gender, :value => "female", :id=>"female",
+         input_html: {class: "input"}, wrapper: false, label_html: {class: 'label'}  %>
+      </div>
+    </div>
+    <p>
+      By clicking Sign Up, you agree to agree to our <a href="#">Terms,  
+      Data Policy</a> and <a href="#">Cookies Policies.</a>
+    </p>
+    <div class="col-12">
+      <%= f.submit "Sign up", :class=> "btn btn-primary", :style => "width: 100%" %>
+    </div>
+  <% end %>
+  <br />
+  <%= render "devise/shared/links" %>
+</div>
+
+
