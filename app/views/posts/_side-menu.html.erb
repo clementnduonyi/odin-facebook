@@ -1,0 +1,9 @@
+<div class="col-md-3 ms-3">
+    <figure>
+        <%=link_to (image_tag current_user.avatar_thumbnail, :style => "border-radius: 50%; width: 75px; height: 75px"), user_path(current_user) %>
+    </figure>
+
+    <div>
+        <%= link_to "Friends", user_friends_path(current_user), :class => "text-primary" %>
+    </div>
+</div>
