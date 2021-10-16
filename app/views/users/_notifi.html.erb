@@ -1,0 +1,13 @@
+<div class="border rounded col-4 mt-5">
+    <%req_count = current_user.recieved_requests.count %>
+    <% if req_count == 0 %>
+        <p><em>Friend requests appears here!</em></p>
+    <% elsif req_count == 1 %>
+        <p class="ms-3 mt-3"><%= req_count.to_s + " Friend request"%></p>
+        <%= render "request", request: @request %>
+    <% elsif req_count > 1  %>
+        <p class="ms-3 mt-3"><%= req_count.to_s + " Friend request".pluralize %></p>
+        <%= render "request", request: @request %>
+    <% end %>
+</div>
+    

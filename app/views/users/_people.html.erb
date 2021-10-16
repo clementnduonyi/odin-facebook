@@ -1,0 +1,24 @@
+<div class="col-3 border rounded mt-5">
+    <p class="text-center mt-3">People you may Know</p>
+    <% @users.each do |user|%>
+        <% unless user == current_user ||
+        current_user.fans.any?{ |fan| fan.id == user.id}||
+        current_user.recieved_requests.any?{ |req| req.sender_id == user.id}||
+        user.recieved_requests.any?{ |req| req.sender_id == current_user.id} %>
+            <div class="row mb-3">
+                <div class="col-sm-8">
+                    <%=link_to (image_tag user.avatar_thumbnail, :style => "border-radius: 50%; width: 45px; height: 45px"), user_path(user) %>
+                    <span><%= user.firstname + " " + user.surename %></span>
+                </div>
+                <div class="col-sm-4">
+                    <%= button_to "Add", requests_path(reciever_id: user.id), 
+                    method: :post, :class => "btn btn-primary " %>
+                </div>
+                
+            <!-- <span><%#= button_to "Remove", user_url(id: user.id), method: :delete, :class => "btn btn-primary ms-3" %><span>-->
+            </div>
+        <% end %>   
+    <% end %>
+
+</div>
+
