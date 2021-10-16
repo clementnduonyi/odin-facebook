@@ -1,0 +1,33 @@
+<%#= @comment.errors.full_messages.join(", ")%>
+<h3>Replies</h3>
+<%# unless comment.parent_id || !comment.replies.any? %>
+ <div>
+    
+    <% comments = @post.comments.is_parent.select(comment.id)%>
+    <%# if comment.replies.exists? %>
+      <% comments.each do |comment|%>
+        
+        <%comment.replies.each do |reply| %>
+          <% parent_id = params[:comment_id].to_s %>
+          <%= render partial: 'comments/reply', :locals => {reply: reply} if reply.parent_id == comment.id  %>
+        <% end %>
+      <% end %>
+    <%# end %>
+  </div>
+<%# end %>
+
+<%= simple_form_for [@post, @comment] do |f| %>
+  <%= f.error_notification %>
+  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+  <div class="form-inputs mt-5">
+    <% unless @comment.persisted? %>
+      <%= f.input :parent_id, :as => :hidden, :value => @comment.parent_id %>
+    <% end %>
+    <%= f.input :body, as: :text, :label_html => {:class => "d-none"}, 
+    :class => "form-control", :placeholder => "Type a reply..."%>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit, "Post" %>
+  </div>
+<% end %>

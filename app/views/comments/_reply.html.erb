@@ -1,0 +1,21 @@
+
+    <div class='col-md-6 ms-5'>
+        <div class="row mt-3">
+            <div class="col-1">
+                <figure class="figure">
+                    <%= link_to (image_tag reply.user.avatar_thumbnail, 
+                    :style => "border-radius: 50%; width: 30px; height: 30px"), 
+                    user_path(reply.user) %>
+                
+                </figure>
+            </div>
+            <div class="col-10 ms-3 rounded  comments">
+                <strong><%= (reply.user.firstname + " " + reply.user.surename) %></strong><br />
+                <div class="w-auto"><%= reply.body %></div>
+            </div>
+            
+        </div>
+    
+    </div>
+
+

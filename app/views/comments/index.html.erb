@@ -1,0 +1,33 @@
+<div class="container border w-50">
+  <div class="row">
+    <h1>Comments</h1>
+      <p id="notice"><%= notice %></p>
+    <div class="col-3">
+    </div>
+      <% @post.comments.each do |comment| %>
+        <%= render 'comments/comment', comment: comment %>
+      <% end %>
+    <div class="container">
+      <div class="row">
+        <div class="col-1 mt-5">
+          <figure class="figure">
+            <%= link_to (image_tag current_user.avatar_thumbnail, :style => "border-radius: 50%; width: 40px; height: 40px"), user_path(current_user) %>
+          </figure>
+        </div>
+        <div class="col-10">
+          <%= render 'comments/form', post: @post, comment: @comment  %>
+        </div>
+      </div>
+    </div>
+    <div class="col-3">
+    </div>
+  </div>
+</div>
+
+
+
+<!--tr>
+        <td><%#= link_to 'Show', post_comment_path(@post, comment) %></td>
+        <td><%#= link_to 'Edit', edit_post_comment_path(@post, comment) %></td>
+        <td><%#= link_to 'Destroy', post_comment_path(@post, comment), :method => :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr-->

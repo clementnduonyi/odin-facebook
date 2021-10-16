@@ -1,0 +1,17 @@
+
+<%= @comment.errors.full_messages.join(", ")%>
+<%= simple_form_for([@post, @comment]) do |f| %>
+  <%= f.error_notification %>
+  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+
+  <div class="form-inputs mt-5">
+      
+      <%= f.input :body, as: :text, :label_html => {:class => "d-none"},
+      :class => "form-control", :placeholder => "Type a comment..."%>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>
+
