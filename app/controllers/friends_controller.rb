@@ -2,12 +2,6 @@ class FriendsController < ApplicationController
   before_action :authenticate_user!
  
     
-  def create
-    request = Request.find_by(id: params[:request])
-    request.accept
-    redirect_to request.referrer
-  end
-
   def destroy
     friend = Friend.where('user_id = ? AND
                                     friend_id = ?',
