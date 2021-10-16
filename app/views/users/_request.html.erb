@@ -1,8 +1,21 @@
-<% @requests.each do |req|%><br />
-    <%= link_to req.sender.firstname, user_path(req.sender) %>
-    <%= button_to "Confirm", confirm_request_path(req), :class => "btn btn-primary mb-3"%>
-    <%= button_to "Delete", declined_request_path(req), method: :delete, :class => "btn btn-primary mb-3" %>
-<% end %>
+<div class="">
+    <% @requests.each do |req|%>
+        <div class= "row mb-3">
+            <div class="col-7">
+                <%= link_to (image_tag req.sender.avatar_thumbnail, :style => "border-radius: 50%; width: 45px; height: 45px"), user_path(req.sender) %>
+                <span><%= req.sender.firstname + " " + req.sender.surename %></span>
+            </div>
+            <div class="col-2">
+                <%= button_to "Accept", confirm_request_path(req), :class => "btn btn-primary"%>
+            </div>
+            <div class="col-2">
+                <%= button_to "Reject", declined_request_path(req), method: :delete, :class => "btn btn-primary " %>
+            </div>
+        </div>
+    <% end %>
+</div>
+
+
 
 
 

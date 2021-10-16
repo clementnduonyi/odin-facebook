@@ -4,11 +4,11 @@ class RegistrationsController < Devise::RegistrationsController
     def create
         super
         if @user.persisted?
-            #begin
-            UserMailer.with(user: @user).welcome_email.deliver_now
-            #rescue
+            begin
+                UserMailer.with(user: @user).welcome_email.deliver_now
+            rescue
                 #flash.notice = "Successfully signed up. (Welcome email not sent)"
-            #end
+            end
         end
     end
     private

@@ -15,17 +15,22 @@
     <div class="mb-3">
       <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
     </div>
+      
     <div class="mb-3">
-      <%= f.button :submit, "Log In", :class => "btn btn-primary form-control-lg" , :style => "width: 100%"%>
+      <%= f.button :submit, "Log In", :class => "btn btn-primary form-control-lg", :style => "width: 100%"%>
     </div>
   <% end %>
-  <div class="mb-3 text-center">
-    <%= link_to "Forget Password?", new_password_path(:user) %>
+  <%= render "devise/shared/links" %>
+  <!--div class="mb-3 text-center">
+    <%#= link_to "Forget Password?", new_password_path(:user) %>
   </div>
   <hr>
   <div class="mb-3 text-center">
-    <%= link_to "Create New Account", new_user_registration_path, :class => "btn btn-success form-control-lg", :style => "color: white;"%>
+    <%#= button_to "Register with Facebook", user_facebook_omniauth_authorize_path %>
   </div>
+  <div class="mb-3 text-center">
+    <%#= link_to "Create New Account", new_user_registration_path, :class => "btn btn-success form-control-lg", :style => "color: white;"%>
+  </div-->
   
 </div>
 

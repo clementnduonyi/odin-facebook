@@ -31,7 +31,7 @@
   
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <div class="container-fluid">
-        <%= link_to "OdinFacebook", root_path, :class => "navbar-brand"%>
+        <%= link_to "OdinSocial", posts_path, :class => "navbar-brand"%>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -39,7 +39,7 @@
         <div class="collapse navbar-collapse" id="navbarText">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item">
-              <%= link_to "Home", root_path, :class => "nav-link active", "aria-current" => "page"  %>
+              <%= link_to "Home", posts_path, :class => "nav-link active", "aria-current" => "page"  %>
             </li>
             
             <li class="nav-item">
@@ -47,12 +47,19 @@
             </li>
           </ul>
           <button type="button" class="btn btn-primary me-3">
-           <%= link_to "Notifications", user_path(current_user.id), :class => "text-white" %><span class="badge bg-secondary ms-2"> <%= current_user.recieved_requests.count %></span>
+           <%= link_to "Notifications", user_path(current_user.id), 
+           :class => "text-white" %><span class="badge bg-secondary ms-2"> 
+           <%= current_user.recieved_requests.count %></span>
            <span class="visually-hidden">New alerts</span>
           </button>
+
+           <span class="navbar-text" >
+            <%= link_to (image_tag current_user.avatar_thumbnail, :style => "border-radius: 50%; width: 30px; height: 30px"),
+             edit_user_registration_path, :class => "me-3"%>
+          </span>
         
           <span class="navbar-text" >
-            <%= button_to "Sign Out", destroy_user_session_path, method: :delete, :class => "nav-link active "%>
+            <%= button_to "Sign Out", destroy_user_session_path, method: :delete, :class => "btn btn-link "%>
           </span>
           <% end %>
         </div>

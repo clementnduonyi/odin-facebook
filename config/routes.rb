@@ -1,9 +1,20 @@
 Rails.application.routes.draw do
-  devise_for :users, :controllers => {registrations: "registrations"}          
-  resources :posts
+  devise_for :users, :controllers => {registrations: "registrations", omniauth_callbacks: 'users/omniauth_callbacks'}          
   resources :users, only: [:index, :show] do
     get 'friends'
+    
   end
+  resources :likes, only: [:create, :destroy]
+  get 'likes', to: 'posts#index'
+
+  
+  resources :posts do
+    resources :comments
+  end
+
+  
+
+  
 
   get '/friends', to: 'users#friends', as: :friends
   #scope '/friends', as: :friends do
@@ -16,7 +27,7 @@ Rails.application.routes.draw do
       delete 'declined'
     end
   end
-  
+
   
   devise_scope :user do
     root :to => 'devise/sessions#new'

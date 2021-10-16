@@ -1,4 +1,36 @@
-<%= (@user.firstname.capitalize + " " + @user.surename.capitalize)%>
+<div class="col-5 ">
+    <div class="container border rounded mt-5 text-center">
+        <figure class=" figure pt-3">
+            <%= image_tag @user.avatar_thumbnail, :style => "border-radius: 50%"%>
+        </figure>
+    <!--<img class="bg-primary text-white rounded-circle mt-3 p-3"    
+        src="..." alt= "<%= @user.firstname.split(//).first << @user.surename.split(//).first %>">-->
+        <h1 class=""><%= @user.firstname + " " + @user.surename %></h1>
+    </div>
+   
+    <% @posts.each do |post|%>
+        <% if current_user.fans.any? {|fan| fan.id == post.user_id } || 
+        post.user_id == current_user.id %>
+            <div class="container border rounded mt-5">
+                <article>
+                    <div class= "mt-3">
+                        <%= image_tag post.user.avatar_thumbnail, :style => "border-radius: 50%; width: 60px; height: 60px"  %>
+                        <span><%= (post.user.firstname + " " + post.user.surename) %></span>
+                    </div>
+                    <div class="mt-3">
+                        <% if post.image.attached? %>
+                            <div class="mt-3 text-center">
+                                <%= image_tag post.image, :style => "width: 200px"%>
+                            </div>
+                        <% end %>
+                        <div class="mt-3 text-center"><%= post.body %></div>
+                    </div>
+                </article>
+            </div>
+        <% end %>
+    <% end %>
+</div>
+
 
 
 
